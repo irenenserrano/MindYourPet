@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/drawer_layout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_width="match_parent"
+                    android:background="?attr/colorPrimary"
+                    android:elevation="4dp"
+                    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                    android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <TextView
+                        android:text="@string/pet_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pet_name"
+                        android:textSize="30sp"
+                        android:textColor="@color/white" />
+
+<!--                <menu>-->
+<!--                    <item-->
+<!--                            android:id="@+id/edit_button"-->
+<!--                            android:icon="@drawable/ic_baseline_delete_24"-->
+<!--                            android:orderInCategory="100"-->
+<!--                            android:showAsAction="always"/>-->
+<!--                </menu>-->
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </LinearLayout>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>
