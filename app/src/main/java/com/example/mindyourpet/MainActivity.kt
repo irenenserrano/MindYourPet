@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        setSupportActionBar(findViewById(R.layout.toolbar_main))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -21,10 +21,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.getItemId()
+        var id = item.itemId
         if (id == R.id.edit_button) {
             Toast.makeText(this, "item clicked", Toast.LENGTH_LONG).show()
         }
-        return super.onOptionsItemSelected(item)
+        return false
     }
 }
