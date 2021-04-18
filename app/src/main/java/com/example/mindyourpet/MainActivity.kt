@@ -22,9 +22,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         var id = item.itemId
-        if (id == R.id.edit_button) {
+        if (id == R.id.delete_button) {
             Toast.makeText(this, "item clicked", Toast.LENGTH_LONG).show()
         }
-        return false
+        return super.onOptionsItemSelected(item)
     }
 }
