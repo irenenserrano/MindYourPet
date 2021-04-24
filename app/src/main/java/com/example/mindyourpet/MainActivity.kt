@@ -1,11 +1,15 @@
 package com.example.mindyourpet
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
-
-    //private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -13,4 +17,6 @@ class MainActivity : AppCompatActivity() {
         // Note that the Toolbar defined in the layout has the id "my_toolbar"
         setSupportActionBar(findViewById(R.id.toolbar))
         }
-}
+
+    }
+
