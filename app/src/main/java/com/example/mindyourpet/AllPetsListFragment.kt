@@ -6,6 +6,7 @@ import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.mindyourpet.databinding.AllPetsListFragmentBinding
 
 class AllPetsListFragment : Fragment() {
@@ -47,7 +48,19 @@ class AllPetsListFragment : Fragment() {
                 adapter.data = it
             }
         })
-        return inflater.inflate(R.layout.all_pets_list_fragment, container, false)
+
+        val fab: View = binding.root.findViewById(R.id.FAB)
+        fab.setOnClickListener {
+            viewModel.navigateToAddPet.observe(viewLifecycleOwner, Observer<Boolean> { navigate ->
+                if(navigate){
+                    val navController = findNavController()
+                    navController.navigate(R.id.action_homeFragment_to_gdgListFragment)
+                    viewModel.onNavigatedToAddPet()
+                }
+
+            })
+        }
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
