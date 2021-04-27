@@ -2,4 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation"/>
+    android:id="@+id/navigation">
+
+    <fragment
+        android:id="@+id/addReminderFragment"
+        android:name="com.example.mindyourpet.AddReminderFragment"
+        android:label="fragment_title"
+        tools:layout="@layout/add_reminder">
+    </fragment>
+</navigation>

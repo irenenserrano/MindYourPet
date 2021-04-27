@@ -1,44 +1,56 @@
 package com.example.mindyourpet
 
-import android.R
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
-import androidx.databinding.DataBindingUtil
+import android.widget.TimePicker
 import androidx.fragment.app.Fragment
-import com.example.android.navigation.databinding.AddReminderBinding
-
 
 class AddReminderFragment : Fragment() {
-    private var save_button: Button? = null
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-       val binding = DataBindingUtil.inflate<AddReminderBinding>(inflater,
-            R.layout.add_reminder,container,false)
+        //find view by id in fragment
+        val view: View = inflater.inflate(R.layout.add_reminder, container, false)
+        val saveBtn: Button = view.findViewById<Button>(R.id.save_button) as Button
+        val cancelBtn: Button = view.findViewById<Button>(R.id.cancel_button)
 
-        //var titleTextBox = binding.title_input
-        save_button = binding.saveButton
+        saveBtn.setOnClickListener {
 
-            binding.saveButton.setOnClickListener{ view: View ->
+            val titleText = view.findViewById<EditText>(R.id.title_input)
+            var titleValue = titleText.text.toString()
 
-                var titleText = binding.title_input
-                var titleValue = titleText.getText().toString()
+            val notesText = view.findViewById<EditText>(R.id.notes_box)
+            var notesValue = notesText.text.toString()
 
-                var notesText = binding.notes_box
-                var notesValue = notesText.getText().toString()
+            val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
+            var spinnerValue = mySpinner.getSelectedItem().toString()
 
-                var mySpinner = binding.dropdown_menu
-                var spinnerValue = mySpinner.getSelectedItem().toString()
+            //time picker thing
+            val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
 
-                //figure out time picker
-                //pass data to database
-            }
-        return binding.root
+            //pass data to database
+
+        }
+
+        cancelBtn.setOnClickListener {
+            val titleText = view.findViewById<EditText>(R.id.title_input)
+            titleText.text.clear()
+
+            val notesText = view.findViewById<EditText>(R.id.notes_box)
+            notesText.text.clear()
+
+            val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
+            mySpinner.setSelection(0)
+
+            //figure out time picker
+            val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
+
+        }
+        return view
     }
 }
