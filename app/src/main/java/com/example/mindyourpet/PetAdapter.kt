@@ -21,12 +21,13 @@ class PetAdapter : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
         holder.name.text = pet.name
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.pet_item_view, parent, false)
         return ViewHolder(view)
     }
-}
-class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val name: TextView = itemView.findViewById(R.id.pet_name)
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val name: TextView = itemView.findViewById(R.id.pet_name)
+    }
 }
