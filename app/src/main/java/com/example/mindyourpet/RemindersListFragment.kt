@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.mindyourpet.databinding.RemindersListFragmentBinding
@@ -43,13 +44,16 @@ class RemindersListFragment : Fragment() {
             }
         })
 
+        val fab: View = binding.root.findViewById(R.id.reminder_FAB)
+        fab.setOnClickListener{
+            Toast.makeText(it.context, "Item Clicked", Toast.LENGTH_LONG).show()
+        }
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(RemindersListViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }
