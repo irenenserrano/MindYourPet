@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mindyourpet.databinding.RemindersListFragmentBinding
 
 class RemindersListFragment : Fragment() {
@@ -19,6 +20,7 @@ class RemindersListFragment : Fragment() {
     }
 
     private lateinit var viewModel: RemindersListViewModel
+    lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +33,8 @@ class RemindersListFragment : Fragment() {
         binding.reminderList.adapter = adapter
 
         val application = requireNotNull(this.activity).application
+        layoutManager = LinearLayoutManager(application)
+        binding.reminderList.layoutManager = layoutManager
 
         val remindersListViewModel = ViewModelProvider(this, RemindersListViewModelFactory(reminders,application)).get(RemindersListViewModel::class.java)
 
