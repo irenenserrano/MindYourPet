@@ -7,12 +7,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AllPetsListViewModel(list: List<Pet>, application: Application) : ViewModel() {
+
     val database = list
     var currentPet = MutableLiveData<Pet?>()
 
     val listOfPets = MutableLiveData(list)
 
-    val petString = currentPet.value?.name ?: "No pets found"
+    init {
+        listOfPets.value = listOf(Pet("benny"), Pet("Charlie"))
+    }
 
     private val _navigateToAddPet = MutableLiveData<Boolean>()
     val navigateToAddPet: LiveData<Boolean>
@@ -25,4 +28,6 @@ class AllPetsListViewModel(list: List<Pet>, application: Application) : ViewMode
     fun onNavigatedToAddPet() {
         _navigateToAddPet.value = false
     }
+
+
 }

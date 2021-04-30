@@ -3,11 +3,10 @@ package com.example.mindyourpet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PetAdapter : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
+class PetAdapter(var clickListener: OnPetItemClickListener) : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
     var data = listOf<Pet>()
         set(value) {
             field = value
@@ -18,7 +17,8 @@ class PetAdapter : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pet = data[position]
-        holder.bind(pet)
+        //holder.bind(pet)
+        holder.init(pet, clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,11 +26,19 @@ class PetAdapter : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
     }
 
     class ViewHolder private constructor (itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name: Button = itemView.findViewById(R.id.pet_name)
+        val name: TextView = itemView.findViewById(R.id.pet_name)
 
-        fun bind(item: Pet) {
+        fun init(item: Pet, action: OnPetItemClickListener) {
             name.text = item.name
+
+            itemView.setOnClickListener{
+                action.onPetItemClicked(item, adapterPosition)
+            }
         }
+
+//        fun bind(item: Pet) {
+//            name.text = item.name
+//        }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
@@ -40,4 +48,8 @@ class PetAdapter : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
             }
         }
     }
+}
+
+interface OnPetItemClickListener {
+    fun onPetItemClicked(item: Pet, position: Int)
 }
