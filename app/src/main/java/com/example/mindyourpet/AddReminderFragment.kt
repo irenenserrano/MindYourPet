@@ -1,5 +1,6 @@
 package com.example.mindyourpet
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TimePicker
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 
 class AddReminderFragment : Fragment() {
+
+    private lateinit var reminderDao: ReminderDatabaseDao
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -18,6 +24,8 @@ class AddReminderFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.add_reminder, container, false)
         val saveBtn: Button = view.findViewById<Button>(R.id.save_button) as Button
         val cancelBtn: Button = view.findViewById<Button>(R.id.cancel_button)
+
+
 
         saveBtn.setOnClickListener {
 
@@ -32,8 +40,29 @@ class AddReminderFragment : Fragment() {
 
             //time picker thing
             val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
+            var hour = timePicker.hour
+            var min = timePicker.minute
+
+
+
+            //create instance of database
+            //val ob = DB(this.getActivity(),"database",null,1)
 
             //pass data to database
+            //addTask(titleValue, notesValue, spinnerValue)
+
+            val task = Reminder(
+                    taskId=0,
+                    petId=0,
+                    taskTitle = titleValue,
+                    taskFrequency= spinnerValue,
+                    taskDescription = notesValue,
+                    reminderTime= 0,
+                    taskLastCompleted= 0,
+                    taskLastReminded = 0  )
+
+
+            reminderDao.addTask(task)
 
         }
 
