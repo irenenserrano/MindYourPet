@@ -15,7 +15,7 @@ interface PetDatabaseDao {
     suspend fun addPet (pet: Pet)
 
     /**
-     * Selects and returns the row that matches the supplied start time, which is our key.
+     * Selects and returns the row that matches the petId which is our key.
      *
      * @param key petId
      */
@@ -26,14 +26,19 @@ interface PetDatabaseDao {
      * Selects and returns all of the row that matches our species_id, which is our key.
      *
      * @param key speciesId
+     *
+     * This  method will return a List of Pets with that
+     * Species Id meaning all cats and all dogs or all same species.
      */
-    @Query("SELECT * from pet_table WHERE species_id = :key")
+    @Query("SELECT * from pet_table WHERE species_id = :key ORDER BY petId")
     fun getAllSpeciesId(key: Int): List<Pet>
 
     /**
      * Writes name and returns the row that matches the name, which is our key.
      *
      * @param key name of animal which is a string
+     *
+     * This method return a Pet.
      */
     @Query("SELECT * from pet_table WHERE name = :key")
     suspend fun getPetId(key: String): Pet
@@ -45,6 +50,5 @@ interface PetDatabaseDao {
      */
     @Query("DELETE from pet_table WHERE petId = :key")
     suspend fun delete(key: Long)
-
 
 }

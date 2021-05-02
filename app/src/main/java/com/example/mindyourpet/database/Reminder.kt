@@ -11,7 +11,7 @@ data class Reminder(
     var taskId: Long = 0L,
 
     @ColumnInfo(name = "pet_id")
-    val petId: String,
+    val petId: Int,
 
     @ColumnInfo(name = "task_title")
     val taskTitle: String,
@@ -24,11 +24,11 @@ data class Reminder(
     val taskDescription: String,
 
     @ColumnInfo(name = "reminder_time")
-    val reminderTime: Int,
+    val reminderTime: Long,
     //minutes after midnight
 
     @ColumnInfo(name = "task_completed")
-    var taskLastCompleted: Long,
+    var taskLastCompleted: Int,
     //current time in millis
 
     @ColumnInfo(name = "last_reminded")

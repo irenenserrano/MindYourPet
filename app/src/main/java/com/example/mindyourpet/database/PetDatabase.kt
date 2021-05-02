@@ -19,12 +19,17 @@ abstract class PetDatabase : RoomDatabase() {
      * Connects the database to the DAO.
      */
     abstract val PetDatabaseDao: PetDatabaseDao
+    abstract val ReminderDatabaseDao:ReminderDatabaseDao
 
     /**
      * Define a companion object, this allows us to add functions on the SleepDatabase class.
      *
-     * For example, clients can call `SleepDatabase.getInstance(context)` to instantiate
-     * a new SleepDatabase.
+     * For example, clients can call `PetDatabase.getInstance(context)` to instantiate
+     * a new PetDatabase.
+     *
+     * For example, clients can call `ReminderDatabase.getInstance(context)` to instantiate
+     * a new ReminderDatabase.
+     *
      */
     companion object {
         /**

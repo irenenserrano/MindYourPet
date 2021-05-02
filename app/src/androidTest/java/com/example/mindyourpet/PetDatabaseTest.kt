@@ -6,6 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.mindyourpet.database.Pet
 import com.example.mindyourpet.database.PetDatabase
 import com.example.mindyourpet.database.PetDatabaseDao
+import com.example.mindyourpet.database.Reminder
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.After
@@ -23,7 +24,7 @@ import kotlin.jvm.Throws
  */
 
 @RunWith(AndroidJUnit4::class)
-class SleepDatabaseTest {
+class PetDatabaseTest {
 
     private lateinit var petDao: PetDatabaseDao
     private lateinit var db: PetDatabase
@@ -43,12 +44,13 @@ class SleepDatabaseTest {
     }
     fun initializeDatabase(){
 
-        val p = Pet(name="Bingo", speciesId = 0)
-        val p1=Pet(name="Jeans",speciesId = 1)
-        val p2=Pet(name="Kim", speciesId = 4)
-        val p3 = Pet(name="Bob",speciesId = 3)
-        val p4 = Pet(name="Burro", speciesId = 2)
-        val p5 = Pet(name="Elvert",speciesId =  0)
+        val p = Pet(petId = 0,name="Bingo", speciesId = 0)
+        val p1=Pet(petId = 1,name="Jeans",speciesId = 1)
+        val p2=Pet(petId = 2,name="Kim", speciesId = 4)
+        val p3 = Pet(petId = 3,name="Bob",speciesId = 3)
+        val p4 = Pet(petId = 4,name="Burro", speciesId = 2)
+        val p5 = Pet(petId = 5,name="Elvert",speciesId =  0)
+
 
         runBlocking {
             petDao.addPet(p)
@@ -73,12 +75,15 @@ class SleepDatabaseTest {
         val newPet = petDao.getName(1)
         assertEquals("Bingo", newPet.name)
         assertEquals(0, newPet.speciesId)
+        val newPet1 = petDao.getName(2)
+        assertEquals("Jeans", newPet.name)
+        assertEquals(1, newPet.speciesId)
     }
 
     //For Species Id: 0 == cat 1==dog 2==bird 3==Monkey 4==fish
     @Test
     @Throws(Exception::class)
-    fun getAllSpeciesId() = runBlocking {
+    fun getAllSameSpeciesName() = runBlocking {
 
         var allCats = petDao.getAllSpeciesId(0)
         assertEquals(2, allCats.size)
@@ -88,12 +93,10 @@ class SleepDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun getIdWithName() = runBlocking {
+    fun getSpeciesIdWithName() = runBlocking {
         val petNameReturn = petDao.getPetId("Bingo")
-        assertEquals(, petNameReturn.speciesId)
+        assertEquals(0,petNameReturn.petId)
         //assertEquals(p5, petNameReturn.speciesId)
     }
-
-
 
 }
