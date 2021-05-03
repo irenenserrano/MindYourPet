@@ -16,7 +16,7 @@ import com.example.mindyourpet.database.Pet
 class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
     companion object {
-        fun newInstance() = AllPetsListFragment()
+      //  fun newInstance() = AllPetsListFragment()
         val pets = listOf<Pet>(Pet(name = "Benny", speciesId = 1), Pet(name ="Bella", speciesId = 1), Pet(name ="Charlie", speciesId = 1))
     }
 
@@ -27,40 +27,41 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val root = inflater.inflate(R.layout.all_pets_list_fragment, container, false)
+        // https://stackoverflow.com/a/33388481/631051
+        val root = inflater.inflate(R.layout.all_pets_list_fragment,null)
 
-        // Create the adapter and associate it with with the RecyclerView.
-        val petList = root.findViewById<RecyclerView>(R.id.pet_list)
-        petList.adapter = PetAdapter(this)
-
-        val application = requireNotNull(this.activity).application
-        layoutManager = LinearLayoutManager(application)
-        petList.layoutManager = layoutManager
-
-        //Get a reference to the ViewModel associated with this Fragment
-        val allPetsListViewModel = ViewModelProvider(this, AllPetsListViewModelFactory(pets, application)).get(AllPetsListViewModel::class.java)
-
-        /*
-        // Add an observer to the the list of pets
-        allPetsListViewModel.listOfPets.observe(viewLifecycleOwner, Observer{
-            it?.let {
-                petList?.adapter?.data = it
-            }
-        })
-*/
-
-        val fab: View = root.findViewById(R.id.pet_FAB)
-        fab.setOnClickListener {
-            Toast.makeText(it.context,"Item Clicked", Toast.LENGTH_LONG).show()
-//            viewModel.navigateToAddPet.observe(viewLifecycleOwner, Observer<Boolean> { navigate ->
-//                if(navigate){
-//                    val navController = findNavController()
-//                    navController.navigate(R.id.action_homeFragment_to_gdgListFragment)
-//                    viewModel.onNavigatedToAddPet()
-//                }
+//        // Create the adapter and associate it with with the RecyclerView.
+//        val petList = root.findViewById<RecyclerView>(R.id.pet_list)
+//        petList.adapter = PetAdapter(this)
 //
-//            })
-        }
+//        val application = requireNotNull(this.activity).application
+//        layoutManager = LinearLayoutManager(application)
+//        petList.layoutManager = layoutManager
+//
+//        //Get a reference to the ViewModel associated with this Fragment
+//        val allPetsListViewModel = ViewModelProvider(this, AllPetsListViewModelFactory(pets, application)).get(AllPetsListViewModel::class.java)
+//
+//        /*
+//        // Add an observer to the the list of pets
+//        allPetsListViewModel.listOfPets.observe(viewLifecycleOwner, Observer{
+//            it?.let {
+//                petList?.adapter?.data = it
+//            }
+//        })
+//*/
+//
+//        val fab: View = root.findViewById(R.id.pet_FAB)
+//        fab.setOnClickListener {
+//            Toast.makeText(it.context,"Item Clicked", Toast.LENGTH_LONG).show()
+////            viewModel.navigateToAddPet.observe(viewLifecycleOwner, Observer<Boolean> { navigate ->
+////                if(navigate){
+////                    val navController = findNavController()
+////                    navController.navigate(R.id.action_homeFragment_to_gdgListFragment)
+////                    viewModel.onNavigatedToAddPet()
+////                }
+////
+////            })
+//        }
         return root
     }
 
