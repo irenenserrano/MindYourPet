@@ -14,7 +14,7 @@ class AllPetsListViewModel(list: List<Pet>, application: Application) : ViewMode
     val listOfPets = MutableLiveData(list)
 
     init {
-        listOfPets.value = listOf(Pet("benny"), Pet("Charlie"))
+        listOfPets.value = listOf(Pet(name = "benny"), Pet(name ="Charlie"))
     }
 
     private val _navigateToAddPet = MutableLiveData<Boolean>()

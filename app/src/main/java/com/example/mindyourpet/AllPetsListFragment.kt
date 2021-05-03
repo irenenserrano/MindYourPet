@@ -18,7 +18,7 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
     companion object {
         fun newInstance() = AllPetsListFragment()
-        val pets = listOf<Pet>(Pet("Benny"), Pet("Bella"), Pet("Charlie"))
+        val pets = listOf<Pet>(Pet(name = "Benny"), Pet(name ="Bella"), Pet(name ="Charlie"))
     }
 
     private lateinit var viewModel: AllPetsListViewModel
@@ -78,14 +78,14 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
     override fun onPetItemClicked(item: Pet, position: Int) {
         Toast.makeText(this.context, item.name +"'s profile was clicked", Toast.LENGTH_LONG ).show()
-        viewModel.navigateToAddPet.observe(viewLifecycleOwner, Observer<Boolean> { navigate ->
-                if(navigate){
+//        viewModel.navigateToAddPet.observe(viewLifecycleOwner, Observer<Boolean> { navigate ->
+//                if(navigate) {
                     val navController = findNavController()
-                    navController.navigate(R.id.action_allPetsListFragment_to_remindersListFragment)
-                    viewModel.onNavigatedToAddPet()
-                }
-
-            })
+                    navController.navigate(AllPetsListFragmentDirections.actionAllPetsListFragmentToRemindersListFragment(item.petId))
+//                    viewModel.onNavigatedToAddPet()
+//                }
+//
+//            })
     }
 //    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 //        inflater.inflate(R.menu.menu_top, menu)

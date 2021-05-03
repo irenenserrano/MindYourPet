@@ -14,5 +14,10 @@
     <fragment
         android:id="@+id/remindersListFragment"
         android:name="com.example.mindyourpet.RemindersListFragment"
-        android:label="RemindersListFragment" />
+        android:label="RemindersListFragment" >
+        <argument
+                android:name="petId"
+                app:argType="long"
+                android:defaultValue="-1L" />
+    </fragment>
 </navigation>
