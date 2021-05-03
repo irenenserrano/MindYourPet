@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mindyourpet.database.Pet
 
 class PetAdapter(var clickListener: OnPetItemClickListener) : RecyclerView.Adapter<PetAdapter.ViewHolder>() {
     var data = listOf<Pet>()

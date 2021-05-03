@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     tools:viewBindingIgnore="true">
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/AllPetsList"
         android:name="com.example.mindyourpet.AllPetsListFragment"
         android:layout_width="match_parent"

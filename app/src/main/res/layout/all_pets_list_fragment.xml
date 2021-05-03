@@ -7,16 +7,23 @@
             name = "allPetsListViewModel"
             type = "com.example.mindyourpet.AllPetsListViewModel"/>
     </data>
-    <FrameLayout
+
+<!--    https://stackoverflow.com/a/50537193-->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/allPetsListFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AllPetsListFragment">
+        tools:context=".AllPetsListFragment"
+        app:navGraph="@navigation/navigation"
+        app:defaultNavHost="true">
 
-        <include
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_main"
-            layout="@layout/toolbar_main"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="147dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="All Pets"
+            android:background="@color/teal_700" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pet_list"
@@ -37,5 +44,5 @@
             android:layout_margin="16dp"
             app:icon="@drawable/ic_baseline_add_24" />
 
-    </FrameLayout>
+    </androidx.fragment.app.FragmentContainerView>
 </layout>

@@ -12,13 +12,14 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mindyourpet.database.Pet
 import com.example.mindyourpet.databinding.AllPetsListFragmentBinding
 
 class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
     companion object {
         fun newInstance() = AllPetsListFragment()
-        val pets = listOf<Pet>(Pet(name = "Benny"), Pet(name ="Bella"), Pet(name ="Charlie"))
+        val pets = listOf<Pet>(Pet(name = "Benny", speciesId = 1), Pet(name ="Bella", speciesId = 1), Pet(name ="Charlie", speciesId = 1))
     }
 
     private lateinit var viewModel: AllPetsListViewModel
@@ -78,14 +79,8 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
     override fun onPetItemClicked(item: Pet, position: Int) {
         Toast.makeText(this.context, item.name +"'s profile was clicked", Toast.LENGTH_LONG ).show()
-//        viewModel.navigateToAddPet.observe(viewLifecycleOwner, Observer<Boolean> { navigate ->
-//                if(navigate) {
-                    val navController = findNavController()
-                    navController.navigate(AllPetsListFragmentDirections.actionAllPetsListFragmentToRemindersListFragment(item.petId))
-//                    viewModel.onNavigatedToAddPet()
-//                }
-//
-//            })
+        val navController = findNavController()
+        navController.navigate(AllPetsListFragmentDirections.actionAllPetsListFragmentToRemindersListFragment(item.petId))
     }
 //    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 //        inflater.inflate(R.menu.menu_top, menu)

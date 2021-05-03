@@ -19,5 +19,12 @@
                 android:name="petId"
                 app:argType="long"
                 android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_remindersListFragment_to_addReminderFragment"
+            app:destination="@id/addReminderFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addReminderFragment"
+        android:name="com.example.mindyourpet.AddReminderFragment"
+        android:label="AddReminderFragment" />
 </navigation>
