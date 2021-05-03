@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation">
+        xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
+    app:startDestination="@id/allPetsListFragment">
 
     <fragment
-        android:id="@+id/addReminderFragment"
-        android:name="com.example.mindyourpet.AddReminderFragment"
-        android:label="fragment_title"
-        tools:layout="@layout/add_reminder">
+        android:id="@+id/allPetsListFragment"
+        android:name="com.example.mindyourpet.AllPetsListFragment"
+        android:label="AllPetsListFragment" >
+        <action
+            android:id="@+id/action_allPetsListFragment_to_remindersListFragment"
+            app:destination="@id/remindersListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/remindersListFragment"
+        android:name="com.example.mindyourpet.RemindersListFragment"
+        android:label="RemindersListFragment" >
+        <argument
+                android:name="petId"
+                app:argType="long"
+                android:defaultValue="-1L" />
     </fragment>
 </navigation>
