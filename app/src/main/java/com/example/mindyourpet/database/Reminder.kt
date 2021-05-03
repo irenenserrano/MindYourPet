@@ -11,7 +11,7 @@ data class Reminder(
     var taskId: Long = 0L,
 
     @ColumnInfo(name = "pet_id")
-    val petId: Int,
+    val petId: Long,
 
     @ColumnInfo(name = "task_title")
     val taskTitle: String,

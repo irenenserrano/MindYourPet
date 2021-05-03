@@ -3,8 +3,10 @@ package com.example.mindyourpet
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.mindyourpet.database.Pet
+import com.example.mindyourpet.database.ReminderDatabaseDao
 
-class RemindersListViewModelFactory(private val list: List<Reminder>, private val application: Application) : ViewModelProvider.Factory {
+class RemindersListViewModelFactory(private val dataSource: ReminderDatabaseDao, private val application: Application, private val petId: Long) : ViewModelProvider.Factory {
     /**
      * Creates a new instance of the given `Class`.
      *
@@ -16,7 +18,7 @@ class RemindersListViewModelFactory(private val list: List<Reminder>, private va
     </T> */
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(RemindersListViewModel::class.java)) {
-            return RemindersListViewModel(list, application) as T
+            return RemindersListViewModel(dataSource, application, petId) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

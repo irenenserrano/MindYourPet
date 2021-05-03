@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mindyourpet.database.Reminder
 
 class ReminderAdapter : RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
     var data = listOf<Reminder>()
@@ -28,7 +29,7 @@ class ReminderAdapter : RecyclerView.Adapter<ReminderAdapter.ViewHolder>() {
         val taskTitle: TextView = itemView.findViewById(R.id.reminder_title)
 
         fun bind(item: Reminder) {
-            taskTitle.text = item.title
+            taskTitle.text = item.taskTitle
         }
 
         companion object {

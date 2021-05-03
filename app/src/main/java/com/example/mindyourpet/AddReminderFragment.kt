@@ -11,6 +11,9 @@ import android.widget.Spinner
 import android.widget.TimePicker
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.example.mindyourpet.database.Reminder
+import com.example.mindyourpet.database.ReminderDatabaseDao
+import kotlinx.coroutines.runBlocking
 
 class AddReminderFragment : Fragment() {
 
@@ -36,7 +39,7 @@ class AddReminderFragment : Fragment() {
             var notesValue = notesText.text.toString()
 
             val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
-            var spinnerValue = mySpinner.getSelectedItem().toString()
+            var spinnerValue = mySpinner.getSelectedItem() as Int
 
             //time picker thing
             val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
@@ -62,7 +65,7 @@ class AddReminderFragment : Fragment() {
                     taskLastReminded = 0  )
 
 
-            reminderDao.addTask(task)
+            runBlocking { reminderDao.addTask(task) }
 
         }
 
