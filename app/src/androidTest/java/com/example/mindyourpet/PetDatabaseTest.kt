@@ -42,14 +42,15 @@ class PetDatabaseTest {
 
         initializeDatabase()
     }
-    fun initializeDatabase(){
 
-        val p = Pet(petId = 0,name="Bingo", speciesId = 0)
-        val p1=Pet(petId = 1,name="Jeans",speciesId = 1)
-        val p2=Pet(petId = 2,name="Kim", speciesId = 4)
-        val p3 = Pet(petId = 3,name="Bob",speciesId = 3)
-        val p4 = Pet(petId = 4,name="Burro", speciesId = 2)
-        val p5 = Pet(petId = 5,name="Elvert",speciesId =  0)
+    fun initializeDatabase() {
+
+        val p = Pet(name = "Bingo", speciesId = 0)
+        val p1 = Pet(name = "Jeans", speciesId = 1)
+        val p2 = Pet(name = "Kim", speciesId = 4)
+        val p3 = Pet(name = "Bob", speciesId = 3)
+        val p4 = Pet(name = "Burro", speciesId = 2)
+        val p5 = Pet(name = "Elvert", speciesId = 0)
 
 
         runBlocking {
@@ -61,6 +62,7 @@ class PetDatabaseTest {
             petDao.addPet(p5)
         }
     }
+
     @After
     @Throws(IOException::class)
     fun closeDb() {
@@ -76,8 +78,8 @@ class PetDatabaseTest {
         assertEquals("Bingo", newPet.name)
         assertEquals(0, newPet.speciesId)
         val newPet1 = petDao.getName(2)
-        assertEquals("Jeans", newPet.name)
-        assertEquals(1, newPet.speciesId)
+        assertEquals("Jeans", newPet1.name)
+        assertEquals(1, newPet1.speciesId)
     }
 
     //For Species Id: 0 == cat 1==dog 2==bird 3==Monkey 4==fish
@@ -91,12 +93,25 @@ class PetDatabaseTest {
         assertEquals("Elvert", allCats.get(1).name)
     }
 
+    //test returns petid with given name as
     @Test
     @Throws(Exception::class)
-    fun getSpeciesIdWithName() = runBlocking {
+    fun getPetIdWithName() = runBlocking {
         val petNameReturn = petDao.getPetId("Bingo")
-        assertEquals(0,petNameReturn.petId)
-        //assertEquals(p5, petNameReturn.speciesId)
+        assertEquals(1, petNameReturn.petId)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun getAllPets() = runBlocking {
+        val allPets = petDao.getAllPets()
+        assertEquals(6, allPets.size)
+        assertEquals("Bingo", allPets.get(0).name)
+        assertEquals("Jeans", allPets.get(1).name)
+        assertEquals("Kim", allPets.get(2).name)
+        assertEquals("Bob", allPets.get(3).name)
+        assertEquals("Burro", allPets.get(4).name)
+        assertEquals("Elvert", allPets.get(5).name)
     }
 
 }

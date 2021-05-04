@@ -12,7 +12,7 @@ import androidx.room.Query
 interface PetDatabaseDao {
 
     @Insert
-    suspend fun addPet (pet: Pet)
+    suspend fun addPet(pet: Pet)
 
     /**
      * Selects and returns the row that matches the petId which is our key.
@@ -50,5 +50,13 @@ interface PetDatabaseDao {
      */
     @Query("DELETE from pet_table WHERE petId = :key")
     suspend fun delete(key: Long)
+
+
+    /**
+     * Returns all pets
+     *
+     */
+    @Query("SELECT * from pet_table")
+    suspend fun getAllPets(): List<Pet>
 
 }

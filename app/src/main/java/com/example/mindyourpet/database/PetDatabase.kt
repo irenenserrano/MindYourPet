@@ -12,14 +12,14 @@ import androidx.room.RoomDatabase
  * This pattern is pretty much the same for any database,
  * so you can reuse it.
  */
-@Database(entities = [Pet::class,Reminder::class] ,version = 1, exportSchema = false)
+@Database(entities = [Pet::class, Reminder::class], version = 1, exportSchema = false)
 abstract class PetDatabase : RoomDatabase() {
 
     /**
      * Connects the database to the DAO.
      */
     abstract val PetDatabaseDao: PetDatabaseDao
-    abstract val ReminderDatabaseDao:ReminderDatabaseDao
+    abstract val ReminderDatabaseDao: ReminderDatabaseDao
 
     /**
      * Define a companion object, this allows us to add functions on the SleepDatabase class.
