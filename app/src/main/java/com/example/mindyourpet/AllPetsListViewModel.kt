@@ -8,15 +8,8 @@ import androidx.lifecycle.ViewModel
 import com.example.mindyourpet.database.Pet
 
 class AllPetsListViewModel(list: List<Pet>, application: Application) : ViewModel() {
-
-    val database = list
     var currentPet = MutableLiveData<Pet?>()
-
     val listOfPets = MutableLiveData(list)
-
-    init {
-        listOfPets.value = listOf(Pet(name = "benny", speciesId = 1), Pet(name ="Charlie", speciesId = 1))
-    }
 
     private val _navigateToAddPet = MutableLiveData<Boolean>()
     val navigateToAddPet: LiveData<Boolean>

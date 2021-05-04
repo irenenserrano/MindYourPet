@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -67,7 +68,11 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AllPetsListViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,
+            AllPetsListViewModelFactory(
+                listOf(Pet(name = "benny", speciesId = 1), Pet(name ="Charlie", speciesId = 1)),
+                requireActivity().application))
+            .get(AllPetsListViewModel::class.java)
     }
 
     override fun onPetItemClicked(item: Pet, position: Int) {
