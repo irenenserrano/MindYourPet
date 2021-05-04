@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mindyourpet.database.Pet
 import com.example.mindyourpet.database.PetDatabase
@@ -57,6 +58,9 @@ class RemindersListFragment : Fragment() {
         val fab: View = binding.root.findViewById(R.id.reminder_FAB)
         fab.setOnClickListener{
             Toast.makeText(it.context, "Item Clicked", Toast.LENGTH_LONG).show()
+            val navController = findNavController()
+            navController.navigate(
+                RemindersListFragmentDirections.actionRemindersListFragmentToAddReminderFragment(petId))
         }
         return binding.root
     }
