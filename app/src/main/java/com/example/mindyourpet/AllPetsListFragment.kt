@@ -6,7 +6,6 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,16 +14,14 @@ import com.example.mindyourpet.database.Pet
 class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
     companion object {
-        //  fun newInstance() = AllPetsListFragment()
-        val pets = listOf(
+        val DEFAULT_PETS = listOf(
             Pet(name = "Benny", speciesId = 1),
             Pet(name = "Bella", speciesId = 1),
             Pet(name = "Charlie", speciesId = 1)
         )
     }
 
-    private lateinit var viewModel: AllPetsListViewModel
-    lateinit var layoutManager: LinearLayoutManager
+    private lateinit var allPetsListViewModel: AllPetsListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +40,8 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
         petList.adapter = petAdapter
 
         //Get a reference to the ViewModel associated with this Fragment
-        val allPetsListViewModel =
-            ViewModelProvider(this, AllPetsListViewModelFactory(pets, application)).get(
+        allPetsListViewModel =
+            ViewModelProvider(this, AllPetsListViewModelFactory(DEFAULT_PETS, application)).get(
                 AllPetsListViewModel::class.java
             )
         // Add an observer to the the list of pets
@@ -67,18 +64,6 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 //            })
         }
         return root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(
-            this,
-            AllPetsListViewModelFactory(
-                pets,
-                requireActivity().application
-            )
-        )
-            .get(AllPetsListViewModel::class.java)
     }
 
     override fun onPetItemClicked(item: Pet, position: Int) {
