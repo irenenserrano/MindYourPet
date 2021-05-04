@@ -67,7 +67,6 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
     }
 
     override fun onPetItemClicked(item: Pet, position: Int) {
-        Toast.makeText(this.context, item.name + "'s profile was clicked", Toast.LENGTH_LONG).show()
         val navController = findNavController()
         navController.navigate(
             AllPetsListFragmentDirections.actionAllPetsListFragmentToRemindersListFragment(

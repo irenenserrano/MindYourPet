@@ -57,7 +57,6 @@ class RemindersListFragment : Fragment() {
 
         val fab: View = binding.root.findViewById(R.id.reminder_FAB)
         fab.setOnClickListener{
-            Toast.makeText(it.context, "Item Clicked", Toast.LENGTH_LONG).show()
             val navController = findNavController()
             navController.navigate(
                 RemindersListFragmentDirections.actionRemindersListFragmentToAddReminderFragment(petId))

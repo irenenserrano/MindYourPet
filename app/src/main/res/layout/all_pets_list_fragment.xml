@@ -11,6 +11,13 @@
         app:navGraph="@navigation/navigation"
         app:defaultNavHost="true">
 
+
+        <include
+            android:id="@+id/toolbar_main"
+            layout="@layout/toolbar_main"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="147dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pet_list"
             android:layout_width="match_parent"
