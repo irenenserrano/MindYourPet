@@ -28,8 +28,6 @@ class AddReminderFragment : Fragment() {
         val saveBtn = view.findViewById<Button>(R.id.save_button)
         val cancelBtn = view.findViewById<Button>(R.id.cancel_button)
 
-
-
         saveBtn.setOnClickListener {
 
             val titleText = view.findViewById<EditText>(R.id.title_input)
@@ -45,9 +43,7 @@ class AddReminderFragment : Fragment() {
             val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
             var hour = timePicker.hour
             var min = timePicker.minute
-
-
-
+            
             //create instance of database
             //val ob = DB(this.getActivity(),"database",null,1)
 
@@ -64,9 +60,7 @@ class AddReminderFragment : Fragment() {
                     taskLastCompleted= 0,
                     taskLastReminded = 0  )
 
-
             runBlocking { reminderDao.addTask(task) }
-
         }
 
         cancelBtn.setOnClickListener {
