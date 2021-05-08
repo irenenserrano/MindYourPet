@@ -25,8 +25,8 @@ class AddReminderFragment : Fragment() {
 
         //find view by id in fragment
         val view: View = inflater.inflate(R.layout.add_reminder, container, false)
-        val saveBtn: Button = view.findViewById<Button>(R.id.save_button) as Button
-        val cancelBtn: Button = view.findViewById<Button>(R.id.cancel_button)
+        val saveBtn = view.findViewById<Button>(R.id.save_button)
+        val cancelBtn = view.findViewById<Button>(R.id.cancel_button)
 
 
 
