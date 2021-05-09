@@ -17,12 +17,6 @@ import java.io.IOException
 import kotlin.jvm.Throws
 
 
-/**
- * This is not meant to be a full set of tests. For simplicity, most of your samples do not
- * include tests. However, when building the Room, it is helpful to make sure it works before
- * adding the UI.
- */
-
 @RunWith(AndroidJUnit4::class)
 class PetDatabaseTest {
 
@@ -82,11 +76,9 @@ class PetDatabaseTest {
         assertEquals(1, newPet1.speciesId)
     }
 
-    //For Species Id: 0 == cat 1==dog 2==bird 3==Monkey 4==fish
     @Test
     @Throws(Exception::class)
     fun getAllSameSpeciesName() = runBlocking {
-
         var allCats = petDao.getAllSpeciesId(0)
         assertEquals(2, allCats.size)
         assertEquals("Bingo", allCats.get(0).name)

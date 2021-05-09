@@ -1,5 +1,4 @@
 package com.example.mindyourpet
-//./gradlew assembleDebug --stacktrace
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -37,11 +36,13 @@ class ReminderDatabaseTest {
 
 
     fun initializeDatabase() {
+        //Fake data for the prototype
         val task1 = Reminder(
             petId = 1,
             taskTitle = "Bingo's Lunchtime",
             taskFrequency = 1,
             taskDescription = "Give 2 cups of dog food to Bingo",
+            //parameters weren't implemented fully
             reminderTime = 0,
             taskLastCompleted = 0,
             taskLastReminded = 0
@@ -52,6 +53,7 @@ class ReminderDatabaseTest {
             taskTitle = "Jeans Medicine",
             taskFrequency = 2,
             taskDescription = "Give Jeans his medicine.",
+            //parameters weren't implemented fully
             reminderTime = 0,
             taskLastCompleted = 0,
             taskLastReminded = 0
@@ -60,7 +62,6 @@ class ReminderDatabaseTest {
         runBlocking {
             reminderDao.addTask(task1)
             reminderDao.addTask(task2)
-
         }
     }
 
