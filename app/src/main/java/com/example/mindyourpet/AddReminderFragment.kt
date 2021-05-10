@@ -39,8 +39,6 @@ class AddReminderFragment : Fragment() {
             val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
             var spinnerValue = mySpinner.getSelectedItem() as Int
 
-            val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
-      
             val task = Reminder(
                     taskId=0,
                     petId=0,
@@ -63,10 +61,8 @@ class AddReminderFragment : Fragment() {
 
             val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
             mySpinner.setSelection(0)
-            
-            val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
-
         }
+
         return view
     }
 }
