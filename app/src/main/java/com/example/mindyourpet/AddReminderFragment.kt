@@ -11,6 +11,9 @@ import android.widget.Spinner
 import android.widget.TimePicker
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.example.mindyourpet.database.Reminder
+import com.example.mindyourpet.database.ReminderDatabaseDao
+import kotlinx.coroutines.runBlocking
 
 class AddReminderFragment : Fragment() {
 
@@ -34,21 +37,10 @@ class AddReminderFragment : Fragment() {
             var notesValue = notesText.text.toString()
 
             val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
-            var spinnerValue = mySpinner.getSelectedItem().toString()
+            var spinnerValue = mySpinner.getSelectedItem() as Int
 
-            //time picker thing
             val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
-            var hour = timePicker.hour
-            var min = timePicker.minute
-
-
-
-            //create instance of database
-            //val ob = DB(this.getActivity(),"database",null,1)
-
-            //pass data to database
-            //addTask(titleValue, notesValue, spinnerValue)
-
+      
             val task = Reminder(
                     taskId=0,
                     petId=0,
@@ -59,9 +51,7 @@ class AddReminderFragment : Fragment() {
                     taskLastCompleted= 0,
                     taskLastReminded = 0  )
 
-
-            reminderDao.addTask(task)
-
+            runBlocking { reminderDao.addTask(task) }
         }
 
         cancelBtn.setOnClickListener {
@@ -73,8 +63,7 @@ class AddReminderFragment : Fragment() {
 
             val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
             mySpinner.setSelection(0)
-
-            //figure out time picker
+            
             val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
 
         }

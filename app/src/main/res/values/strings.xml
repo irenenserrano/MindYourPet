@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MindYourPet</string>
+    <string name="petName">Name</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Save">Save</string>
+    <string name="Species">Species</string>
+    <string name="delete_button_title">Delete Option</string>
 </resources>
