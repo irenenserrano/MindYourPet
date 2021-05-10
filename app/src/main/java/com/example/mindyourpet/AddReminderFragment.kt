@@ -25,10 +25,8 @@ class AddReminderFragment : Fragment() {
 
         //find view by id in fragment
         val view: View = inflater.inflate(R.layout.add_reminder, container, false)
-        val saveBtn: Button = view.findViewById<Button>(R.id.save_button) as Button
-        val cancelBtn: Button = view.findViewById<Button>(R.id.cancel_button)
-
-
+        val saveBtn = view.findViewById<Button>(R.id.save_button)
+        val cancelBtn = view.findViewById<Button>(R.id.cancel_button)
 
         saveBtn.setOnClickListener {
 
@@ -41,18 +39,6 @@ class AddReminderFragment : Fragment() {
             val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
             var spinnerValue = mySpinner.getSelectedItem() as Int
 
-            //time picker thing
-            val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
-            val hour = timePicker.hour
-            val min = timePicker.minute
-
-
-
-            //create instance of database
-            //val ob = DB(this.getActivity(),"database",null,1)
-
-            //pass data to database
-            //addTask(titleValue, notesValue, spinnerValue)
 
             val task = Reminder(
                     taskId=0,
@@ -64,9 +50,7 @@ class AddReminderFragment : Fragment() {
                     taskLastCompleted= 0,
                     taskLastReminded = 0  )
 
-
             runBlocking { reminderDao.addTask(task) }
-
         }
 
         cancelBtn.setOnClickListener {
@@ -78,10 +62,6 @@ class AddReminderFragment : Fragment() {
 
             val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
             mySpinner.setSelection(0)
-
-            //figure out time picker
-            val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
-
         }
         return view
     }
