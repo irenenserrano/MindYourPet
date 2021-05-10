@@ -29,7 +29,6 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
     ): View {
         // https://stackoverflow.com/a/33388481/631051
         val root = inflater.inflate(R.layout.all_pets_list_fragment, container, false)
-        val application = requireNotNull(activity?.application)
 
         // The layout manager must be set before the adapter.
         // https://stackoverflow.com/a/47973416/631051
@@ -41,7 +40,7 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
         //Get a reference to the ViewModel associated with this Fragment
         allPetsListViewModel =
-            ViewModelProvider(this, AllPetsListViewModelFactory(DEFAULT_PETS, application)).get(
+            ViewModelProvider(this, AllPetsListViewModelFactory(DEFAULT_PETS)).get(
                 AllPetsListViewModel::class.java
             )
         // Add an observer to the the list of pets
@@ -54,14 +53,7 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
         val fab: View = root.findViewById(R.id.pet_FAB)
         fab.setOnClickListener {
             Toast.makeText(it.context, "Item Clicked", Toast.LENGTH_LONG).show()
-//            viewModel.navigateToAddPet.observe(viewLifecycleOwner, Observer<Boolean> { navigate ->
-//                if(navigate){
-//                    val navController = findNavController()
-//                    navController.navigate(R.id.action_homeFragment_to_gdgListFragment)
-//                    viewModel.onNavigatedToAddPet()
-//                }
-//
-//            })
+            //TODO: add navigation to AddPetFragment once fragment is completed
         }
         return root
     }
@@ -74,17 +66,4 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
             )
         )
     }
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.menu_top, menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        var id = item.itemId
-//        if (id == R.id.delete_button) {
-//            this?.let{
-//                Toast.makeText(it.context, "item clicked", Toast.LENGTH_LONG).show()
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
 }
