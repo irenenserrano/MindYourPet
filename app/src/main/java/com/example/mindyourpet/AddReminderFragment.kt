@@ -43,8 +43,8 @@ class AddReminderFragment : Fragment() {
 
             //time picker thing
             val timePicker = view.findViewById<TimePicker>(R.id.time_picker)
-            var hour = timePicker.hour
-            var min = timePicker.minute
+            val hour = timePicker.hour
+            val min = timePicker.minute
 
 
 

@@ -6,19 +6,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mindyourpet.database.Pet
 import com.example.mindyourpet.database.ReminderDatabaseDao
 
-class RemindersListViewModelFactory(private val dataSource: ReminderDatabaseDao, private val application: Application, private val petId: Long) : ViewModelProvider.Factory {
-    /**
-     * Creates a new instance of the given `Class`.
-     *
-     *
-     *
-     * @param modelClass a `Class` whose instance is requested
-     * @param <T>        The type parameter for the ViewModel.
-     * @return a newly created ViewModel
-    </T> */
+class RemindersListViewModelFactory(private val dataSource: ReminderDatabaseDao, private val petId: Long) : ViewModelProvider.Factory {
+
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(RemindersListViewModel::class.java)) {
-            return RemindersListViewModel(dataSource, application, petId) as T
+            @Suppress("UNCHECKED_CAST")
+            return RemindersListViewModel(dataSource, petId) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
