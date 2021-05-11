@@ -12,6 +12,6 @@ data class Pet(
     @ColumnInfo(name = "name")
     val name: String,
 
-    @ColumnInfo(name = "species_id")
+    @ColumnInfo(name = "species_Id")
     val speciesId: Int
 )

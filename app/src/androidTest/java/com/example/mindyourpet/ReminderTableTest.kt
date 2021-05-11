@@ -1,4 +1,5 @@
 package com.example.mindyourpet
+
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -15,7 +16,7 @@ import java.io.IOException
 import kotlin.jvm.Throws
 
 @RunWith(AndroidJUnit4::class)
-class ReminderDatabaseTest {
+class ReminderTableTest {
 
     private lateinit var reminderDao: ReminderDatabaseDao
     private lateinit var db: PetDatabase
@@ -35,33 +36,29 @@ class ReminderDatabaseTest {
     }
 
 
-    fun initializeDatabase() {
+    private fun initializeDatabase() {
         //Fake data for the prototype
-        val task1 = Reminder(
-            petId = 1,
-            taskTitle = "Bingo's Lunchtime",
-            taskFrequency = 1,
-            taskDescription = "Give 2 cups of dog food to Bingo",
-            //parameters weren't implemented fully
-            reminderTime = 0,
-            taskLastCompleted = 0,
-            taskLastReminded = 0
-        )
-
-        val task2 = Reminder(
-            petId = 2,
-            taskTitle = "Jeans Medicine",
-            taskFrequency = 2,
-            taskDescription = "Give Jeans his medicine.",
-            //parameters weren't implemented fully
-            reminderTime = 0,
-            taskLastCompleted = 0,
-            taskLastReminded = 0
-        )
-
         runBlocking {
-            reminderDao.addTask(task1)
-            reminderDao.addTask(task2)
+            reminderDao.addTask(Reminder(
+                petId = 1,
+                taskTitle = "Bingo's Lunchtime",
+                taskFrequency = 1,
+                taskDescription = "Give 2 cups of dog food to Bingo",
+                //parameters weren't implemented fully
+                reminderTime = 0,
+                taskLastCompleted = 0,
+                taskLastReminded = 0
+            ))
+            reminderDao.addTask(Reminder(
+                petId = 2,
+                taskTitle = "Jeans Medicine",
+                taskFrequency = 2,
+                taskDescription = "Give Jeans his medicine.",
+                //parameters weren't implemented fully
+                reminderTime = 0,
+                taskLastCompleted = 0,
+                taskLastReminded = 0
+            ))
         }
     }
 

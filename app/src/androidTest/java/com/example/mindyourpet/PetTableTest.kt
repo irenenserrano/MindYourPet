@@ -6,7 +6,6 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.mindyourpet.database.Pet
 import com.example.mindyourpet.database.PetDatabase
 import com.example.mindyourpet.database.PetDatabaseDao
-import com.example.mindyourpet.database.Reminder
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.After
@@ -18,7 +17,7 @@ import kotlin.jvm.Throws
 
 
 @RunWith(AndroidJUnit4::class)
-class PetDatabaseTest {
+class PetTableTest {
 
     private lateinit var petDao: PetDatabaseDao
     private lateinit var db: PetDatabase
@@ -38,14 +37,13 @@ class PetDatabaseTest {
     }
 
     fun initializeDatabase() {
-
+        //fake data protoype
         val p = Pet(name = "Bingo", speciesId = 0)
         val p1 = Pet(name = "Jeans", speciesId = 1)
         val p2 = Pet(name = "Kim", speciesId = 4)
         val p3 = Pet(name = "Bob", speciesId = 3)
         val p4 = Pet(name = "Burro", speciesId = 2)
         val p5 = Pet(name = "Elvert", speciesId = 0)
-
 
         runBlocking {
             petDao.addPet(p)
