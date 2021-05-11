@@ -29,7 +29,6 @@ data class Reminder(
 
     @ColumnInfo(name = "task_completed")
     var taskLastCompleted: Int,
-    //current time in millis
 
     @ColumnInfo(name = "last_reminded")
     var taskLastReminded: Long,

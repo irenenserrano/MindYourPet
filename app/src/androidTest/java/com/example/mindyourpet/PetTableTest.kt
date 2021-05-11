@@ -14,14 +14,8 @@ import java.io.IOException
 import kotlin.jvm.Throws
 
 
-/**
- * This is not meant to be a full set of tests. For simplicity, most of your samples do not
- * include tests. However, when building the Room, it is helpful to make sure it works before
- * adding the UI.
- */
-
 @RunWith(AndroidJUnit4::class)
-class PetDatabaseTest {
+class PetTableTest {
 
     private lateinit var petDao: PetDatabaseDao
     private lateinit var db: PetDatabase
@@ -39,15 +33,15 @@ class PetDatabaseTest {
 
         initializeDatabase()
     }
+
     fun initializeDatabase(){
 
-        val p = Pet(petId = 0, name ="Bingo", speciesId = CAT_ID)
-        val p1 = Pet(petId = 1, name ="Jeans", speciesId = DOG_ID)
-        val p2 = Pet(petId = 2, name ="Kim", speciesId = FISH_ID)
-        val p3 = Pet(petId = 3, name ="Bob", speciesId = MONKEY_ID)
-        val p4 = Pet(petId = 4, name ="Burro", speciesId = BIRD_ID)
+        val p = Pet(petId = 0, name = "Bingo", speciesId = CAT_ID)
+        val p1 = Pet(petId = 1, name = "Jeans", speciesId = DOG_ID)
+        val p2 = Pet(petId = 2, name = "Kim", speciesId = FISH_ID)
+        val p3 = Pet(petId = 3, name = "Bob", speciesId = MONKEY_ID)
+        val p4 = Pet(petId = 4, name = "Burro", speciesId = BIRD_ID)
         val p5 = Pet(petId = 5, name ="Elvert", speciesId =  CAT_ID)
-
 
         runBlocking {
             petDao.addPet(p)
@@ -58,6 +52,7 @@ class PetDatabaseTest {
             petDao.addPet(p5)
         }
     }
+
     @After
     @Throws(IOException::class)
     fun closeDb() {
@@ -88,12 +83,25 @@ class PetDatabaseTest {
         assertEquals("Elvert", allCats.get(1).name)
     }
 
+    //test returns petid with given name as
     @Test
     @Throws(Exception::class)
-    fun getSpeciesIdWithName() = runBlocking {
+    fun getPetIdWithName() = runBlocking {
         val petNameReturn = petDao.getPetId("Bingo")
-        assertEquals(0,petNameReturn.petId)
-        //assertEquals(p5, petNameReturn.speciesId)
+        assertEquals(1, petNameReturn.petId)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun getAllPets() = runBlocking {
+        val allPets = petDao.getAllPets()
+        assertEquals(6, allPets.size)
+        assertEquals("Bingo", allPets.get(0).name)
+        assertEquals("Jeans", allPets.get(1).name)
+        assertEquals("Kim", allPets.get(2).name)
+        assertEquals("Bob", allPets.get(3).name)
+        assertEquals("Burro", allPets.get(4).name)
+        assertEquals("Elvert", allPets.get(5).name)
     }
 
 }

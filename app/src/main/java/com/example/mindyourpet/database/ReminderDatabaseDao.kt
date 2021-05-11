@@ -3,8 +3,6 @@ package com.example.mindyourpet.database
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Update
-
 
 /**
  * Defines methods for using the Reminder class with Room.
@@ -16,25 +14,14 @@ interface ReminderDatabaseDao {
     suspend fun addTask(reminder: Reminder)
 
     /**
-     * When updating a row with a value already set in a column,
-     * replaces the old value with the new one.
-     *
-     * @param  new value to write
-     */
-    @Update
-    suspend fun update(task: Reminder)
-
-
-    /**
      *This query is to get tasks with petId.
      *
-     * @param Long because petId is a long.
+     * @param Long petId
      *
      * This will return a list of reminders a client has for appropriate pet.
      */
-    @Query(value = "SELECT * FROM reminder_table WHERE pet_id =:key ORDER BY pet_id")
+    @Query(value = "SELECT * FROM reminder_table WHERE pet_id =:key ")
     suspend fun getTasksByPetID(key: Long): List<Reminder>
-
 
     /**
      *
@@ -71,34 +58,6 @@ interface ReminderDatabaseDao {
     suspend fun deleteTask(key: Long)
 
     /**
-     *This query is to delete all completed tasks which for testign purposes will be
-     * equal to 1 if completed and 0 if not completed.
-     *
-     * @param Int because task_completed is Int type.
-     *
-     * This will delete all those tasks that are equal to 1
-     * which are completed tasks that should no longer be in list of to do's.
-     */
-    //1 == true //0==false
-//    @Query( "DELETE FROM reminder_table WHERE task_completed == :key ")
-//    suspend fun deleteAllCompletedTasks(key: Int)
-
-
-
-    /**
-     *This query is to delete a task that has the matching key/petId.
-     *
-     * @param key type long
-     *
-     * @return String
-     */
-//    @Query(value = "DELETE FROM reminder_table WHERE pet_id =:key ")
-//    suspend fun deleteTasksByPetID(key: Long)
-
-
-
-
-    /**
      *This query is to return count of tasks for all pets.
      *
      * @return Int
@@ -112,8 +71,33 @@ interface ReminderDatabaseDao {
      *This query is to clear all tasks for all pets
      *
      */
-//    @Query("DELETE FROM reminder_table")
-//    suspend fun clearAllTasks()
+    @Query("DELETE FROM reminder_table")
+    suspend fun clearAllTasks()
+
+    /**
+     *This query is to delete all completed tasks which for testign purposes will be
+     * equal to 1 if completed and 0 if not completed.
+     *
+     * @param Int because task_completed is Int type.
+     *
+     * This will delete all those tasks that are equal to 1
+     * which are completed tasks that should no longer be in list of to do's.
+     */
+    //1 == true //0==false
+//    @Query( "DELETE FROM reminder_table WHERE task_completed == :key ")
+//    suspend fun deleteAllCompletedTasks(key: Int)
+
+
+    /**
+     *This query is to delete a task that has the matching key/petId.
+     *
+     * @param key type long
+     *
+     * @return String
+     */
+//    @Query(value = "DELETE FROM reminder_table WHERE pet_id =:key ")
+//    suspend fun deleteTasksByPetID(key: Long)
+
 
     /**
      *This query is to get count of tasks with same frequency so the three types in this case is Days, Weeks, Monthly.
@@ -124,7 +108,6 @@ interface ReminderDatabaseDao {
      */
 //    @Query(value = "SELECT COUNT(*) FROM reminder_table WHERE pet_id =:key GROUP BY task_frequency ")
 //    suspend fun getCountOfTasksInDiffFrequency(key: Long): Int
-
 
 
     /**
@@ -175,8 +158,6 @@ interface ReminderDatabaseDao {
     //is the only way to test?
 //    @Query("SELECT * from reminder_table WHERE taskId = :key")
 //    suspend fun getPetIdWithTaskId(key: Long): Reminder
-
-
 
 
 }
