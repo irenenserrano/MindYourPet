@@ -18,7 +18,6 @@ class PetAdapter(var clickListener: OnPetItemClickListener) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pet = data[position]
-        //holder.bind(pet)
         holder.init(pet, clickListener)
     }
 
@@ -36,10 +35,6 @@ class PetAdapter(var clickListener: OnPetItemClickListener) : RecyclerView.Adapt
                 action.onPetItemClicked(item, adapterPosition)
             }
         }
-
-//        fun bind(item: Pet) {
-//            name.text = item.name
-//        }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {

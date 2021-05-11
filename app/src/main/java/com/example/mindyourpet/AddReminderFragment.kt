@@ -8,13 +8,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
-import android.widget.TimePicker
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.example.mindyourpet.database.Reminder
 import com.example.mindyourpet.database.ReminderDatabaseDao
 import kotlinx.coroutines.runBlocking
 
+/**
+ * Fragment for adding a new [Reminder].
+ */
 class AddReminderFragment : Fragment() {
 
     private lateinit var reminderDao: ReminderDatabaseDao
@@ -31,23 +33,24 @@ class AddReminderFragment : Fragment() {
         saveBtn.setOnClickListener {
 
             val titleText = view.findViewById<EditText>(R.id.title_input)
-            var titleValue = titleText.text.toString()
+            val titleValue = titleText.text.toString()
 
             val notesText = view.findViewById<EditText>(R.id.notes_box)
-            var notesValue = notesText.text.toString()
+            val notesValue = notesText.text.toString()
 
             val mySpinner = view.findViewById<Spinner>(R.id.dropdown_menu)
-            var spinnerValue = mySpinner.getSelectedItem() as Int
+            val spinnerValue = mySpinner.getSelectedItem() as Int
 
             val task = Reminder(
-                    taskId=0,
-                    petId=0,
-                    taskTitle = titleValue,
-                    taskFrequency= spinnerValue,
-                    taskDescription = notesValue,
-                    reminderTime= 0,
-                    taskLastCompleted= 0,
-                    taskLastReminded = 0  )
+                taskId = 0,
+                petId = 0,
+                taskTitle = titleValue,
+                taskFrequency = spinnerValue,
+                taskDescription = notesValue,
+                reminderTime = 0,
+                taskLastCompleted = 0,
+                taskLastReminded = 0
+            )
 
             runBlocking { reminderDao.addTask(task) }
         }

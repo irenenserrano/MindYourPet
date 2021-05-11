@@ -11,10 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mindyourpet.database.Pet
 
+/**
+ * Fragment listing all pets and enabling a user to add a new pet.
+ * To add a new pet, the user clicks a Floating Action Button.
+ */
 class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
     companion object {
-        val DEFAULT_PETS = listOf(
+       private val DEFAULT_PETS = listOf(
             Pet(name = "Benny", speciesId = 1),
             Pet(name = "Bella", speciesId = 1),
             Pet(name = "Charlie", speciesId = 1)

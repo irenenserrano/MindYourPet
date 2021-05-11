@@ -17,6 +17,10 @@ import com.example.mindyourpet.database.Reminder
 import com.example.mindyourpet.database.ReminderDatabaseDao
 import com.example.mindyourpet.databinding.RemindersListFragmentBinding
 
+/**
+ * Fragment listing all reminders and enabling a user to add a new reminder.
+ * To add a new pet, the user clicks a Floating Action Button, which navigates to [AddReminderFragment].
+ */
 class RemindersListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
