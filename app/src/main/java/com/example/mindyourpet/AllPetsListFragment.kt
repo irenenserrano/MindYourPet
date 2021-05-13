@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mindyourpet.database.DOG_ID
 import com.example.mindyourpet.database.Pet
 
 /**
@@ -19,9 +20,9 @@ class AllPetsListFragment : Fragment(), OnPetItemClickListener {
 
     companion object {
        private val DEFAULT_PETS = listOf(
-            Pet(name = "Benny", speciesId = 1),
-            Pet(name = "Bella", speciesId = 1),
-            Pet(name = "Charlie", speciesId = 1)
+            Pet(name = "Benny", speciesId = DOG_ID),
+            Pet(name = "Bella", speciesId = DOG_ID),
+            Pet(name = "Charlie", speciesId = DOG_ID)
         )
     }
 
