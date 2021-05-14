@@ -30,7 +30,7 @@ class ReminderTableTest {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        reminderDao = db.ReminderDatabaseDao
+        reminderDao = db.reminderDatabaseDao
 
         initializeDatabase()
     }
