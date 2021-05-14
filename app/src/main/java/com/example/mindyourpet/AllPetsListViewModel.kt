@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mindyourpet.database.Pet
 
-class AllPetsListViewModel(list: List<Pet>, application: Application) : ViewModel() {
+class AllPetsListViewModel(list: List<Pet>) : ViewModel() {
     var currentPet = MutableLiveData<Pet?>()
     val listOfPets = MutableLiveData(list)
 
@@ -22,6 +22,4 @@ class AllPetsListViewModel(list: List<Pet>, application: Application) : ViewMode
     fun onNavigatedToAddPet() {
         _navigateToAddPet.value = false
     }
-
-
 }

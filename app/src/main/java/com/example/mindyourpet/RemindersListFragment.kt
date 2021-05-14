@@ -13,17 +13,11 @@ import com.example.mindyourpet.database.PetDatabase
 import com.example.mindyourpet.database.ReminderDatabaseDao
 import com.example.mindyourpet.databinding.RemindersListFragmentBinding
 
+/**
+ * Fragment listing all reminders and enabling a user to add a new reminder.
+ * To add a new pet, the user clicks a Floating Action Button, which navigates to [AddReminderFragment].
+ */
 class RemindersListFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = RemindersListFragment()
-    }
-
-    private lateinit var viewModel: RemindersListViewModel
-    lateinit var layoutManager: LinearLayoutManager
-    private lateinit var dataSource: ReminderDatabaseDao
-    private var petId: Long = 0
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,24 +26,22 @@ class RemindersListFragment : Fragment() {
         val binding: RemindersListFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.reminders_list_fragment, container, false)
         val application = requireNotNull(this.activity).application
         val args:RemindersListFragmentArgs = RemindersListFragmentArgs.fromBundle(requireArguments())
-        petId = args.petId
-        dataSource = PetDatabase.getInstance(application).reminderDatabaseDao
-
+        val petId = args.petId
+        val dataSource = PetDatabase.getInstance(application).ReminderDatabaseDao
         val adapter = ReminderAdapter()
+
         binding.reminderList.adapter = adapter
 
-        layoutManager = LinearLayoutManager(application)
+        val layoutManager = LinearLayoutManager(application)
         binding.reminderList.layoutManager = layoutManager
 
-        val remindersListViewModel = ViewModelProvider(this, RemindersListViewModelFactory(dataSource, application, petId)).get(RemindersListViewModel::class.java)
+        val remindersListViewModel = ViewModelProvider(this, RemindersListViewModelFactory(dataSource, petId)).get(RemindersListViewModel::class.java)
 
         binding.remindersListViewModel = remindersListViewModel
 
         binding.lifecycleOwner = this
 
-
         adapter.data = remindersListViewModel.listOfReminders
-
 
         val fab: View = binding.root.findViewById(R.id.reminder_FAB)
         fab.setOnClickListener{
@@ -59,10 +51,4 @@ class RemindersListFragment : Fragment() {
         }
         return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(RemindersListViewModel::class.java)
-    }
-
 }
