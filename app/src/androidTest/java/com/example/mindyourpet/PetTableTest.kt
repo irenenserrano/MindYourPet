@@ -29,7 +29,7 @@ class PetTableTest {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        petDao = db.PetDatabaseDao
+        petDao = db.petDatabaseDao
 
         initializeDatabase()
     }

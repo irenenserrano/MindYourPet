@@ -5,15 +5,21 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+/**
+ * A database that stores Pets or Reminder information.
+ * And a global method to get access to the database.
+ *
+ * This pattern is pretty much the same for any database,
+ * so you can reuse it.
+ */
 @Database(entities = [Pet::class, Reminder::class], version = 1, exportSchema = false)
 abstract class PetDatabase : RoomDatabase() {
 
     /**
-     * Connects the PetDatabaseDao to the DAO.
-     * Connects the ReminderDatabaseDao to the DAO.
+     * Connects the databases to their DAO.
      */
-    abstract val PetDatabaseDao: PetDatabaseDao
-    abstract val ReminderDatabaseDao: ReminderDatabaseDao
+    abstract val petDatabaseDao: PetDatabaseDao
+    abstract val reminderDatabaseDao: ReminderDatabaseDao
 
     /**
      * Define a companion object, this allows us to add functions on the PetDatabase class.
