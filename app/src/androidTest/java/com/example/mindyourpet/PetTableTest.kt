@@ -3,10 +3,7 @@ package com.example.mindyourpet
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.example.mindyourpet.database.Pet
-import com.example.mindyourpet.database.PetDatabase
-import com.example.mindyourpet.database.PetDatabaseDao
-import com.example.mindyourpet.database.Reminder
+import com.example.mindyourpet.database.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.After
@@ -18,7 +15,7 @@ import kotlin.jvm.Throws
 
 
 @RunWith(AndroidJUnit4::class)
-class PetDatabaseTest {
+class PetTableTest {
 
     private lateinit var petDao: PetDatabaseDao
     private lateinit var db: PetDatabase
@@ -32,20 +29,19 @@ class PetDatabaseTest {
             // Allowing main thread queries, just for testing.
             .allowMainThreadQueries()
             .build()
-        petDao = db.PetDatabaseDao
+        petDao = db.petDatabaseDao
 
         initializeDatabase()
     }
 
-    fun initializeDatabase() {
+    fun initializeDatabase(){
 
-        val p = Pet(name = "Bingo", speciesId = 0)
-        val p1 = Pet(name = "Jeans", speciesId = 1)
-        val p2 = Pet(name = "Kim", speciesId = 4)
-        val p3 = Pet(name = "Bob", speciesId = 3)
-        val p4 = Pet(name = "Burro", speciesId = 2)
-        val p5 = Pet(name = "Elvert", speciesId = 0)
-
+        val p = Pet(petId = 0, name = "Bingo", speciesId = CAT_ID)
+        val p1 = Pet(petId = 1, name = "Jeans", speciesId = DOG_ID)
+        val p2 = Pet(petId = 2, name = "Kim", speciesId = FISH_ID)
+        val p3 = Pet(petId = 3, name = "Bob", speciesId = MONKEY_ID)
+        val p4 = Pet(petId = 4, name = "Burro", speciesId = BIRD_ID)
+        val p5 = Pet(petId = 5, name ="Elvert", speciesId =  CAT_ID)
 
         runBlocking {
             petDao.addPet(p)
@@ -76,10 +72,12 @@ class PetDatabaseTest {
         assertEquals(1, newPet1.speciesId)
     }
 
+    //For Species Id: 0 == cat 1 == dog 2 == bird 3 == Monkey 4 == fish
     @Test
     @Throws(Exception::class)
     fun getAllSameSpeciesName() = runBlocking {
-        var allCats = petDao.getAllSpeciesId(0)
+
+        var allCats = petDao.getAllSpeciesId(CAT_ID)
         assertEquals(2, allCats.size)
         assertEquals("Bingo", allCats.get(0).name)
         assertEquals("Elvert", allCats.get(1).name)

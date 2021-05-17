@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 /**
- * A database that stores SleepNight information.
+ * A database that stores Pets or Reminder information.
  * And a global method to get access to the database.
  *
  * This pattern is pretty much the same for any database,
@@ -16,13 +16,13 @@ import androidx.room.RoomDatabase
 abstract class PetDatabase : RoomDatabase() {
 
     /**
-     * Connects the database to the DAO.
+     * Connects the databases to their DAO.
      */
-    abstract val PetDatabaseDao: PetDatabaseDao
-    abstract val ReminderDatabaseDao: ReminderDatabaseDao
+    abstract val petDatabaseDao: PetDatabaseDao
+    abstract val reminderDatabaseDao: ReminderDatabaseDao
 
     /**
-     * Define a companion object, this allows us to add functions on the SleepDatabase class.
+     * Define a companion object, this allows us to add functions on the PetDatabase class.
      *
      * For example, clients can call `PetDatabase.getInstance(context)` to instantiate
      * a new PetDatabase.
